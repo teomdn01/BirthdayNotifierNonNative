@@ -1,4 +1,4 @@
-# Birthdat Notifier
+# Birthday Notifier
 
 A new Flutter project.
 
