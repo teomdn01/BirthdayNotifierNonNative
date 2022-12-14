@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:moto_suchen/feature/friend_listings/friend_listings_screen.dart';
 import 'package:moto_suchen/injection.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
-
-void main() {
+void main() async {
   setup();
   runApp(const MyApp());
 }
@@ -28,13 +29,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  Scaffold(
-        appBar: AppBar(
-          title: const Text("FriendBirthdayNotifier"),
-        ),
-        body: const FriendListingsScreen()
-      ),
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text("FriendBirthdayNotifier"),
+          ),
+          body: const FriendListingsScreen()),
     );
   }
 }
-

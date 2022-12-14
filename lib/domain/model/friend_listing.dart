@@ -8,4 +8,15 @@ class FriendListing {
 
     FriendListing(this.phoneNumber, this.firstName, this.lastName, this.nickname,
     this.birthday, this.message);
+
+     Map<String, dynamic> toMap() {
+    return {
+      'phoneNumber': phoneNumber,
+      'firstName': firstName,
+      'lastName': lastName,
+      'nickname': nickname,
+      'birthday': birthday,
+      'message': message
+    };
+  }
 }
