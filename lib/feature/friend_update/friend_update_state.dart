@@ -1,6 +1,5 @@
 part of 'friend_modify_bloc.dart';
 
-
 abstract class FriendUpdateState {
   const FriendUpdateState();
 }
@@ -12,4 +11,8 @@ class FriendUpdate extends FriendUpdateState {
 
 class FriendUpdating extends FriendUpdateState {
   const FriendUpdating();
+}
+
+class FriendOfflineUpdate extends FriendUpdateState {
+  const FriendOfflineUpdate();
 }

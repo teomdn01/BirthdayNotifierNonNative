@@ -15,14 +15,10 @@ final getIt = GetIt.instance;
 void setup() {
   getIt.registerSingletonAsync<FriendRepository>(
       () => FriendRepositoryImpl.createFriendRepository());
-  sleep(Duration(seconds: 3));
   getIt.registerSingletonWithDependencies<FriendListingsBloc>(
       () => FriendListingsBloc(),
       dependsOn: [FriendRepository]);
-  sleep(Duration(seconds: 3));
   getIt.registerFactoryParam<FriendUpdateBloc, FriendListing, String>(
       (friend, s) => FriendUpdateBloc(friend));
-  sleep(Duration(seconds: 3));
   getIt.registerFactory<FriendAddBloc>(() => FriendAddBloc());
-  sleep(Duration(seconds: 3));
 }

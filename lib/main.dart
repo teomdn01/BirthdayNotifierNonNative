@@ -1,10 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:moto_suchen/feature/friend_listings/friend_listings_screen.dart';
 import 'package:moto_suchen/injection.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() async {
+  HttpOverrides.global = MyHttpOverrides();
   setup();
   runApp(const MyApp());
 }

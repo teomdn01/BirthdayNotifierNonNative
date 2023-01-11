@@ -16,3 +16,7 @@ class FriendListingsLoaded extends FriendListingsState {
   final List<FriendListing> friendListings;
   const FriendListingsLoaded(this.friendListings);
 }
+
+class FriendOfflineDelete extends FriendListingsState {
+  const FriendOfflineDelete();
+}

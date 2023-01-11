@@ -27,6 +27,23 @@ class FriendListingsScreen extends StatelessWidget {
                         return const CircularProgressIndicator();
                       } else if (state is FriendListingsLoading) {
                         return const CircularProgressIndicator();
+                      } else if (state is FriendOfflineDelete) {
+                        Future.delayed(Duration.zero, () {
+                          showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                      title: const Text("Error"),
+                                      content: const Text(
+                                          "You are offline. Delete not available."),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: const Text("Ok"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ]));
+                        });
                       } else if (state is FriendListingsLoaded) {
                         return LayoutBuilder(builder: (ctx, constraints) {
                           return Scaffold(

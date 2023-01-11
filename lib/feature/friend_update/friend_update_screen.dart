@@ -14,25 +14,38 @@ class FriendUpdateScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           title: const Text("Edit listing"),
         ),
-      body: BlocProvider(
-          create: (context) => GetIt.instance.get<FriendUpdateBloc>(param1: initialValue),
-          child: BlocBuilder<FriendUpdateBloc, FriendUpdateState>(
-          builder: (blocContext, state) {
-             if (state is FriendUpdating){
-              
+        body: BlocProvider(
+            create: (context) =>
+                GetIt.instance.get<FriendUpdateBloc>(param1: initialValue),
+            child: BlocBuilder<FriendUpdateBloc, FriendUpdateState>(
+                builder: (blocContext, state) {
+              if (state is FriendUpdating) {
                 return const CircularProgressIndicator();
-            } 
-            else if (state is FriendUpdate){
-              return
-                ModifyFriendForm(blocContext.read<FriendUpdateBloc>(), state, FriendUpdateSubmit());
-            }
-            return const CircularProgressIndicator();
-          }
-          )
-      ));
+              } else if (state is FriendUpdate) {
+                return ModifyFriendForm(blocContext.read<FriendUpdateBloc>(),
+                    state, FriendUpdateSubmit());
+              } else if (state is FriendOfflineUpdate) {
+                Future.delayed(Duration.zero, () {
+                  showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                              title: const Text("Error"),
+                              content: const Text(
+                                  "You are offline. Update not available."),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text("Ok"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                )
+                              ]));
+                });
+              }
+              return const CircularProgressIndicator();
+            })));
   }
 }
-
